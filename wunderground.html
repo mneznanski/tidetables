@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html">
+  <title>NOAA API Tide Test</title>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<style type="text/css">
+  table {
+    width: 100%;
+}
+th {
+    background: #f8f8f8;
+    font-weight: bold;
+    padding: 2px;
+}
+</style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+</head>
+
+<div>
+	<h1>NOAA API Tidetable test</h1>
+
+	<p>Select a location to display tidal information.</p>
+
+	<nav id="location">
+		<ul>
+			<li><a href="#" id="WA/Raymond">Raymond, WA</a></li>
+			<!-- <li><a href="#" id="9440875">South Bend, WA</a></li>
+      <li><a href="#" id="9440747">Nahcotta, WA</a></li>
+      <li><a href="#" id="9440597">Ilwaco, WA</a></li>
+      <li><a href="#" id="9440573">Chinook, WA</a></li>
+      <li><a href="#" id="9440691">Naselle, WA</a></li>
+      <li><a href="#" id="9439069">Knappa, OR</a></li>
+      <li><a href="#" id="9439026">Astoria, OR</a></li>
+      <li><a href="#" id="9437908">Nehalem, OR</a></li>
+      <li><a href="#" id="9437540">Garibaldi, OR</a></li>
+      <li><a href="#" id="9437331">Tillamook, OR</a></li>
+      <li><a href="#" id="9436101">Lincoln City, OR</a></li>
+      <li><a href="#" id="9435385">Newport, OR</a></li>
+      <li><a href="#" id="9434939">Waldport, OR</a></li>-->
+		</ul>
+	</nav>
+
+  <p>Test data will be for the next five days.</p>
+ 
+
+</div>
+
+<script type="text/javascript">
+$(function () {
+
+    $('#location ul li a').on('click', function (e) {
+        e.preventDefault();
+        var location = $(this).attr('id');
+        var apiKey = '17ec2d7c6c96095b';
+        var resturl = "http://api.wunderground.com/api/" + apiKey + "/tide/q/" + location + ".json";
+
+
+        $.ajax({
+            url: resturl,
+            type: "GET",
+            dataType: "json",
+
+            success: function (data, textStatus, jqXHR) {
+                drawTable(data);
+                console.log(data);
+
+
+                function drawTable(data) {
+                    for (var i = 0; i < data.length; i++) {
+                        drawRow(data[i]);
+
+
+                        function drawRow(tideSummary) {
+                            var row = $("<tr />");
+                            $("#tideinfo").append(row);
+                            row.append($("<td>" + tideSummary.date.mon + "/" + tideSummary.date.mday + "</td>"));
+                            row.append($("<td>" + tideSummary.date.hour + ":" + tideSummary.date.min + "</td>"));
+                            row.append($("<td>" + tideSummary.data.height + "</td>"));
+                        }
+                    }
+                }
+            }
+        });
+    });
+});
+</script>
+
+<div>
+  <table id="tideinfo">
+    <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Hgt</th>
+    </tr>
+</table>
+</div>
+</body>
+</html>
