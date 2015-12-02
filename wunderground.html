@@ -63,6 +63,7 @@ $(function () {
             type: "GET",
             dataType: "json",
 
+
             success: function (data, textStatus, jqXHR) {
                 drawTable(data);
                 console.log(data);
@@ -74,11 +75,11 @@ $(function () {
 
 
                         function drawRow(tideSummary) {
-                            var row = $("<tr />");
+                            var row = $("<tr />")
                             $("#tideinfo").append(row);
-                            row.append($("<td>" + tideSummary.date.mon + "/" + tideSummary.date.mday + "</td>"));
-                            row.append($("<td>" + tideSummary.date.hour + ":" + tideSummary.date.min + "</td>"));
-                            row.append($("<td>" + tideSummary.data.height + "</td>"));
+                            row.append($("<td>" + tideSummary.mon + "/" + tideSummary.mday + "</td>"));
+                            row.append($("<td>" + tideSummary.hour + ":" + tideSummary.min + "</td>"));
+                            row.append($("<td>" + tideSummary.height + "</td>"));
                         }
                     }
                 }
