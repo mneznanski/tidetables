@@ -61,10 +61,10 @@ $(function() {
       type: "GET",
       dataType: "json",
 
-      success: function(data) {
-        console.log(data);
+      success: function(tide) {
+        console.log(tide);
         var tdiv = $('#tideinfo');
-        tdiv.html(JSON.stringify(data, null, 4));
+        tdiv.html(JSON.stringify(tide, null, 4));
       }
     });
   });
