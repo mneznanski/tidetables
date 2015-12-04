@@ -49,43 +49,26 @@ th {
 </div>
 
 <script type="text/javascript">
-$(function () {
+$(function() {
 
-    $('#location ul li a').on('click', function (e) {
-        e.preventDefault();
-        var location = $(this).attr('id');
-        var apiKey = '17ec2d7c6c96095b';
-        var resturl = "http://api.wunderground.com/api/" + apiKey + "/tide/q/" + location + ".json";
+  $('#location ul li a').on('click', function(e) {
+    e.preventDefault();
+    var location = $(this).attr('id');
+    var apiKey = '17ec2d7c6c96095b';
+    var resturl = "http://api.wunderground.com/api/" + apiKey + "/tide/q/" + location + ".json";
 
+    $.ajax({
+      url: resturl,
+      type: "GET",
+      dataType: "json",
 
-        $.ajax({
-            url: resturl,
-            type: "GET",
-            dataType: "json",
-
-
-            success: function (data, textStatus, jqXHR) {
-                drawTable(data);
-                console.log(data);
-
-
-                function drawTable(data) {
-                    for (var i = 0; i < data.length; i++) {
-                        drawRow(data[i]);
-
-
-                        function drawRow(tideSummary) {
-                            var row = $("<tr />")
-                            $("#tideinfo").append(row);
-                            row.append($("<td>" + tideSummary.mon + "/" + tideSummary.mday + "</td>"));
-                            row.append($("<td>" + tideSummary.hour + ":" + tideSummary.min + "</td>"));
-                            row.append($("<td>" + tideSummary.height + "</td>"));
-                        }
-                    }
-                }
-            }
-        });
+      success: function(data) {
+        console.log(data);
+        var tdiv = $('#tideinfo');
+        tdiv.html(JSON.stringify(data, null, 4));
+      }
     });
+  });
 });
 </script>
 
