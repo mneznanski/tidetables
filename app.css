@@ -1,0 +1,8 @@
+table {
+    width: 100%;
+}
+th {
+    background: #f8f8f8;
+    font-weight: bold;
+    padding: 2px;
+}
