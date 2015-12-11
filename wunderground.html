@@ -1,55 +1,52 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html">
-  <title>NOAA API Tide Test</title>
-  <link rel="stylesheet" href="app.css">
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <!--<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>-->
-  <script src="fetch-tides.js"></script>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html">
+	<title>NOAA API Tide Test</title>
+	
+	<link rel="stylesheet" href="app.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="fetch-tides.js"></script>
 </head>
 
-<div>
-	<h1>API Tidetable test</h1>
+<body>
+<div class="station-options">
 
-	<p>Select a location to display tidal information.</p>
+	<h1>API Tide Table</h1>
+	<p>Select a location to display tidal information. Test data will be for the next five days.</p>
 
 	<nav id="location">
 		<ul>
 			<li><a href="#" id="WA/Raymond">Raymond, WA</a></li>
 			<li><a href="#" id="WA/South_Bend">South Bend, WA</a></li>
-      <li><a href="#" id="WA/Nahcotta">Nahcotta, WA</a></li>
-      <li><a href="#" id="WA/Ilwaco">Ilwaco, WA</a></li>
-      <li><a href="#" id="WA/Chinook">Chinook, WA</a></li>
-      <li><a href="#" id="WA/Naselle">Naselle, WA</a></li>
-      <li><a href="#" id="OR/Astoria">Astoria, OR</a></li>
-      <li><a href="#" id="OR/Nehalem">Nehalem, OR</a></li>
-      <li><a href="#" id="OR/Garibaldi">Garibaldi, OR</a></li>
-      <li><a href="#" id="OR/Tillamook">Tillamook, OR</a></li>
-      <li><a href="#" id="OR/Lincoln_City">Lincoln City, OR</a></li>
-      <li><a href="#" id="OR/Newport">Newport, OR</a></li>
-      <li><a href="#" id="OR/Waldport">Waldport, OR</a></li>
+			<li><a href="#" id="WA/Nahcotta">Nahcotta, WA</a></li>
+			<li><a href="#" id="WA/Ilwaco">Ilwaco, WA</a></li>
+			<li><a href="#" id="WA/Chinook">Chinook, WA</a></li>
+			<li><a href="#" id="WA/Naselle">Naselle, WA</a></li>
+			<li><a href="#" id="OR/Astoria">Astoria, OR</a></li>
+			<li><a href="#" id="OR/Nehalem">Nehalem, OR</a></li>
+			<li><a href="#" id="OR/Garibaldi">Garibaldi, OR</a></li>
+			<li><a href="#" id="OR/Tillamook">Tillamook, OR</a></li>
+			<li><a href="#" id="OR/Lincoln_City">Lincoln City, OR</a></li>
+			<li><a href="#" id="OR/Newport">Newport, OR</a></li>
+			<li><a href="#" id="OR/Waldport">Waldport, OR</a></li>
 		</ul>
 	</nav>
 
-  <p>Test data will be for the next five days.</p>
-  
-  <!-- Comment -->
- 
+</div>
+
+<div id="tideinfo" class="tide-data">
+	
+	<table>
+		<tr>
+			<th>Date</th>
+			<th>Time</th>
+			<th>Hgt</th>
+		</tr>
+	</table>
 
 </div>
 
-<!-- here is a comment -->
-<div id="tideinfo">
-  <table>
-    <tr>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Hgt</th>
-    </tr>
-</table>
-</div>
 </body>
 </html>
