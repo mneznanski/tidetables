@@ -4,23 +4,15 @@
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html">
   <title>NOAA API Tide Test</title>
+  <link rel="stylesheet" href="app.css">
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-  <style type="text/css">
-  table {
-    width: 100%;
-}
-th {
-    background: #f8f8f8;
-    font-weight: bold;
-    padding: 2px;
-}
-</style>
+  <script src="fetch-tides.js"></script>
 </head>
 
 <div>
-	<h1>NOAA API Tidetable test</h1>
+	<h1>API Tidetable test</h1>
 
 	<p>Select a location to display tidal information.</p>
 
@@ -46,35 +38,6 @@ th {
  
 
 </div>
-
-<script type="text/javascript">
-$(function() {
-
-  //Prevent link function, grab location information
-  $('#location ul li a').on('click', function(e) {
-    e.preventDefault();
-    var location = $(this).attr('id');
-    var apiKey = '17ec2d7c6c96095b';
-    var resturl = "http://api.wunderground.com/api/" + apiKey + "/tide/q/" + location + ".json";
-
-    //Request the data and process it
-    $.ajax({
-      url: resturl,
-      type: "GET",
-      dataType: "json",
-
-      success: function(tide) {
-        //Prove success
-        console.log(tide);
-        //Create div to hold data
-        var tdiv = $('#tideinfo');
-        //Display data
-        tdiv.html(JSON.stringify(tide, null, 4));
-      }
-    });
-  });
-});
-</script>
 
 <div id="tideinfo">
   <table>
