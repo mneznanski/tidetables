@@ -1,26 +1,24 @@
 $(function() {
 
   //Prevent link function, grab location information
-  $('#location ul li a').on('click', function(e) {
-    e.preventDefault();
+  jQuery('#location ul li a').click(function(event) {
+    event.preventDefault();
     var location = $(this).attr('id');
-    var apiKey = '17ec2d7c6c96095b';
-    var resturl = "http://api.wunderground.com/api/" + apiKey + "/tide/q/" + location + ".json";
+    var xml = location + ".xml",
+      xmlDoc = $.parseXML(xml),
+      $xml = $(xmlDoc),
+      $date = $xml.find("date");
+      $time = $xml.find("time");
+      $height = $xml.find("predictions_in_ft");
 
-    //Request the data and process it
-    $.ajax({
-      url: resturl,
-      type: "GET",
-      dataType: "json",
+    // Append "date" to #date
+    $("#date").append($date.text());
 
-      success: function(tide) {
-        //Prove success
-        console.log(tide);
-        //Create div to hold data
-        var tdiv = $('#tideinfo');
-        //Display data
-        tdiv.html(JSON.stringify(tide, null, 4));
-      }
-    });
+    // Append "time" to #time
+    $("#time").append($time.text());
+
+    // Append "predictions_in_ft" to #height
+    $("#height").append($height.text());
+
   });
 });
