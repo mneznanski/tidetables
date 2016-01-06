@@ -1,9 +1,10 @@
 $(function() {
 
   //Prevent link function, grab location information
-  jQuery('#location ul li a').click(function(event) {
+  $('#location ul li a').click(function(event) {
     event.preventDefault();
     var location = $(this).attr('id');
+  //Use location id to select xml file
     var xml = location + ".xml",
       xmlDoc = $.parseXML(xml),
       $xml = $(xmlDoc),
